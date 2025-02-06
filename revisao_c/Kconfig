@@ -1,0 +1,8 @@
+
+config HAS_ALPHA
+    bool "Uses alpha information for color"
+
+config MY_LOG
+    bool "Log information on stdout"
+
+source "Kconfig.zephyr"
