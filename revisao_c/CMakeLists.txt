@@ -5,4 +5,13 @@ cmake_minimum_required(VERSION 3.20.0)
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(es_aula_threads)
 
-target_sources(app PRIVATE src/main.c)
+list(APPEND SRCS src/main.c)
+
+if(CONFIG_GREETINGS)
+    message(WARNING "Screen enabled!")
+    list(APPEND SRCS src/greetings.c)
+endif()
+
+include_directories(include)
+
+target_sources(app PRIVATE ${SRCS})
