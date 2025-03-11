@@ -1,0 +1,25 @@
+config HAS_SCREEN
+    bool "Device has screen"
+    default y
+
+menuconfig GREETINGS
+    bool "Grettings when we have screen"
+    depends on HAS_SCREEN
+    default y
+
+if GREETINGS
+
+config FILTER_B
+    bool "Avoid making B upper case"
+    default y
+
+config FILTER_P
+    bool "Avoid making P upper case"
+    default y
+
+config UPPER_TRANSFORM_VALUE
+    int "Transform value"
+    default 32
+
+endif
+source "Kconfig.zephyr"
