@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief [TODO:description]
+ */
+
 #include <stdint.h>
 #include <zephyr/kernel.h>
 
@@ -13,14 +18,16 @@ enum direction {
 	DIRECTION_OUTPUT,
 	DIRECTION_COUNT,
 };
-
+/* */
 struct packet_header {
 	uint8_t length: 3;
 	uint8_t direction: 1;
 	uint8_t crc: 4;
 };
 
-struct time { // bitfield
+/** Example of struct that uses bitfield */
+
+struct time {
 	uint64_t seconds: 6;
 	uint64_t minutes: 6;
 	uint64_t hours: 5;

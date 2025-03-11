@@ -7,11 +7,13 @@ project(es_aula_threads)
 
 list(APPEND SRCS src/main.c)
 
-if(CONFIG_GREETINGS)
-    message(WARNING "Screen enabled!")
-    list(APPEND SRCS src/greetings.c)
-endif()
+zephyr_library_sources_ifdef(CONFIG_GREETINGS src/greetings.c)
+# if(CONFIG_GREETINGS)
+#     message(WARNING "Screen enabled!")
+#     list(APPEND SRCS src/greetings.c)
+# endif()
 
-include_directories(include)
+zephyr_include_directories(include)
+# include_directories(include)
 
-target_sources(app PRIVATE ${SRCS})
+target_sources(app PRIVATE src/main.c)
