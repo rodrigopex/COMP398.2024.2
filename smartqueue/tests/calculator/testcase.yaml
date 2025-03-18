@@ -1,4 +1,4 @@
 tests:
-  smartqueue.sum_unittests:
+  smartqueue.calc_unittests:
     integration_platforms:
       - qemu_cortex_m3

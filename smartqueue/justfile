@@ -1,0 +1,19 @@
+alias b := build
+alias c := clean
+alias f := flash
+alias m := monitor
+
+default:
+    just --list
+
+clean:
+    rip build
+
+build:
+    west build -p -b nrf52840dk/nrf52840 .
+
+flash:
+    west flash
+
+monitor:
+    tio -b 115200 /dev/tty.usbmodem0006831335301

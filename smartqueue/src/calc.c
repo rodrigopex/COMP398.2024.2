@@ -42,5 +42,7 @@ int calc(char op, int a, int b, int *result)
 		return sum(a, b, result);
 	case '/':
 		return div(a, b, result);
+	default:
+		return -EFAULT;
 	}
 }
