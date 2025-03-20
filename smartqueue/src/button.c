@@ -1,3 +1,5 @@
+#include "button.h"
+
 #include <inttypes.h>
 #include <zephyr/device.h>
 #include <zephyr/drivers/gpio.h>
@@ -17,9 +19,16 @@
 static const struct gpio_dt_spec button = GPIO_DT_SPEC_GET_OR(SW0_NODE, gpios, {0});
 static struct gpio_callback button_cb_data;
 
+ZBUS_CHAN_DEFINE(chan_button_evt, struct button_evt, NULL, NULL, ZBUS_OBSERVERS_EMPTY,
+		 ZBUS_MSG_INIT(.on = false))
+
+static struct button_evt evt = {.on = true};
+
 void button_pressed(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
 {
+	evt.on = !evt.on;
 	printk("Button pressed at %" PRIu32 "\n", k_cycle_get_32());
+	zbus_chan_pub(&chan_button_evt, &evt, K_NO_WAIT);
 }
 
 int button_init(void)
